@@ -1,2 +1,2 @@
-# Charting-Sample
-This is a basic example of using the MapD charting libraries
+# OmniSci Starter Project
+This project is designed to be a starter kit for using the OmniSci charting libraries. This project can be connected to any OmniSci database and was created with connecting to your own OmniSci Cloud instance in mind. The main.js file serves as a pre-bundled OmniSci starter kit, which includes the MapDC Charting, MapD Connector, and MapD Crossfilter libraries.

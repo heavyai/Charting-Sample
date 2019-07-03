@@ -1,0 +1,24 @@
+.title {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .mapd {
+    position: relative;
+    top: 2px;
+  }
+  
+  .data-count {
+    padding-right: 20px;
+  }
+  
+  .filter-count {
+    font-weight: bold;
+    color: #45B1E8;
+  }
+  
+  .omnisci-logo {
+    position: relative;
+    width: 200px;
+    height:50px;
+  }
