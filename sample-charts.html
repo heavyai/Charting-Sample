@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sample charts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <style>
+        .title {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .mapd {
+            position: relative;
+            top: 2px;
+        }
+
+        .data-count {
+            padding-right: 20px;
+        }
+
+        .filter-count {
+            font-weight: bold;
+            color: #45B1E8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="col-xs-6">
+            <div class="title">Total Number of Trees by Name</div>
+            <div class="chart1-example"></div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="title">Total Number of Trees by Health</div>
+            <div class="chart2-example"></div>
+        </div>
+
+    </div>
+    <script src="main.js"></script>
+    <script>
+
+        function createCharts(crossFilter) {
+
+            var colorScheme = ["#22A7F0", "#3ad6cd", "#d4e666"]
+
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 50
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 200
+
+            var allColumns = crossFilter.getColumns();
+
+            var rowChartDimension = crossFilter.dimension("spc_common");
+
+            var rowChartGroup = rowChartDimension.group().reduceCount();
+
+
+            var dcBarChart = dc.rowChart('.chart1-example')
+                .height(h / 1.5)
+                .width(w / 2)
+                .elasticX(true)
+                .cap(20)
+                .othersGrouper(false)
+                .ordinalColors(colorScheme)
+                .measureLabelsOn(true)
+                .dimension(rowChartDimension)
+                .group(rowChartGroup)
+                .autoScroll(true);
+
+            var pieChartDimension = crossFilter.dimension("health");
+            var pieChartGroup = pieChartDimension.group().reduceCount();
+
+            var dcPieChart = dc.pieChart('.chart2-example')
+                .height(h / 1.5)
+                .width(w / 2)
+                .slicesCap(4)
+                .innerRadius(100)
+                .dimension(pieChartDimension)
+                .group(pieChartGroup)
+                .ordinalColors(colorScheme)
+                .legend(dc.legend());
+
+            dc.renderAllAsync();
+
+        }
+
+        function init() {
+            new MapdCon()
+                .protocol("https")
+                .host("use2-api.mapd.cloud")
+                .port("443")
+                .dbName("mapd")
+                .user("R81305AFD451E497E820")
+                .password("YB81a6yhSbm4GWcaRokjlAfiN9z1LzmMu29P3u6S")
+                .connect(function (error, con) {
+                    crossfilter.crossfilter(con, "nyc_trees_2015_683k").then(createCharts)
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+</body>
+
+</html>
