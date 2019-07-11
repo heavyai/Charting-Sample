@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Sample charts</title>
     <meta charset="UTF-8">
@@ -12,19 +13,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header" style="margin-top:10px">
-                <img class="omnisci-logo"src="https://www.omnisci.com/docs/v4.4.0/images/0_banner.png" alt="omnisci logo">
-            </div>
-            <div class="navbar-text navbar-right">
-                <div class="data-count">
-                <span class="total"><span><span class="filter-count"></span></span>
-                <span>of <span class="total-count"></span> trees</span>
-            </div>
-            </div>
-        </div>
-    </nav>
     <div class="main-container">
         <div class="col-xs-6">
             <div class="title">Total Number of Trees by Name</div>
@@ -38,15 +26,15 @@
     </div>
     <script src="main.js"></script>
     <script>
-      
-  /*
-   *  This is example code that shows how to make 2 cross-filtered charts with the
-   *  dc.mapd.js API. This example is not meant to be a replacement for dc.js
-   *  documentation.  For the dc.js API docs, see here
-   *  - https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md.
-   *  For an annotated example of using dc.js - see here:
-   *  https://dc-js.github.io/dc.js/docs/stock.html.
-   */
+
+        /*
+         *  This is example code that shows how to make 2 cross-filtered charts with the
+         *  dc.mapd.js API. This example is not meant to be a replacement for dc.js
+         *  documentation.  For the dc.js API docs, see here
+         *  - https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md.
+         *  For an annotated example of using dc.js - see here:
+         *  https://dc-js.github.io/dc.js/docs/stock.html.
+         */
 
         function createCharts(crossFilter) {
 
@@ -55,56 +43,56 @@
             var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 50
             var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 200
 
-          /*
-           *  In crossfilter, dimensions can function as what we would like to "group by"
-           *  in the SQL sense of the term. We'd like to create a bar chart of number of
-           *  trees by their common name ("spc_common") - so we create a crossfilter dimension
-           *  on "spc_common"
-           */
-            
+            /*
+             *  In crossfilter, dimensions can function as what we would like to "group by"
+             *  in the SQL sense of the term. We'd like to create a bar chart of number of
+             *  trees by their common name ("spc_common") - so we create a crossfilter dimension
+             *  on "spc_common"
+             */
+
             var rowChartDimension = crossFilter.dimension("spc_common");
-          
-          /*
-           *  To group by a variable, we call group() on the function and then specify
-           *  a "reducer".  Here we want to get the count for each state, so we use the
-           *  crossfilter reduceCount() method.
-           *
-           *  More crossfilter Methods here:
-           *  https://github.com/square/crossfilter/wiki/API-Reference#dimension
-           *  https://github.com/square/crossfilter/wiki/API-Reference#group-map-reduce
-           *  https://github.com/square/crossfilter/wiki/API-Reference#group_reduceCount
-           */
-          
+
+            /*
+             *  To group by a variable, we call group() on the function and then specify
+             *  a "reducer".  Here we want to get the count for each state, so we use the
+             *  crossfilter reduceCount() method.
+             *
+             *  More crossfilter Methods here:
+             *  https://github.com/square/crossfilter/wiki/API-Reference#dimension
+             *  https://github.com/square/crossfilter/wiki/API-Reference#group-map-reduce
+             *  https://github.com/square/crossfilter/wiki/API-Reference#group_reduceCount
+             */
+
             var rowChartGroup = rowChartDimension.group().reduceCount();
 
-          /*
-           *  We create a horizontal bar chart with the data specified above (count by spc_common)
-           *  by using a dc.rowChart (i.e. a horizontal bar chart)
-           *
-           *  We invoke the following options on the rowChart using chaining.
-           *
-           *  Height and width - match the containing div
-           *
-           *  elasticX - a dc option to cause the axis to rescale as other filters are
-           *  applied
-           *
-           *  cap(20) - Only show the top 20 groups.  By default crossFilter will sort
-           *  the dimension expression (here, "spc_common"), by the reduce expression (here, count),
-           *  so we end up with the top 20 tree species ordered by count.
-           *
-           *  othersGrouper(false) - We only would like the top 20 tree species and do not want
-           *  a separate bar combining all other tree types.
-           *
-           *  ordinalColors(colorScheme) - we want to color the bars by dimension, i.e. spc_common,
-           *  using the color ramp defined above (an array of rgb or hex values)
-           *
-           *  measureLabelsOn(true) - a mapd.dc.js add-on which allows not only the dimension
-           *  labels (i.e. London Planetree) to be displayed but also the measures (i.e. the number
-           *  of trees with London Planetree as spc_common)
-           *
-           *  Simple Bar Chart Example using DC api here:
-           *  https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md
-           */
+            /*
+             *  We create a horizontal bar chart with the data specified above (count by spc_common)
+             *  by using a dc.rowChart (i.e. a horizontal bar chart)
+             *
+             *  We invoke the following options on the rowChart using chaining.
+             *
+             *  Height and width - match the containing div
+             *
+             *  elasticX - a dc option to cause the axis to rescale as other filters are
+             *  applied
+             *
+             *  cap(20) - Only show the top 20 groups.  By default crossFilter will sort
+             *  the dimension expression (here, "spc_common"), by the reduce expression (here, count),
+             *  so we end up with the top 20 tree species ordered by count.
+             *
+             *  othersGrouper(false) - We only would like the top 20 tree species and do not want
+             *  a separate bar combining all other tree types.
+             *
+             *  ordinalColors(colorScheme) - we want to color the bars by dimension, i.e. spc_common,
+             *  using the color ramp defined above (an array of rgb or hex values)
+             *
+             *  measureLabelsOn(true) - a mapd.dc.js add-on which allows not only the dimension
+             *  labels (i.e. London Planetree) to be displayed but also the measures (i.e. the number
+             *  of trees with London Planetree as spc_common)
+             *
+             *  Simple Bar Chart Example using DC api here:
+             *  https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md
+             */
 
             var dcBarChart = dc.rowChart('.chart1-example')
                 .height(h / 1.5)
@@ -117,19 +105,19 @@
                 .dimension(rowChartDimension)
                 .group(rowChartGroup)
                 .autoScroll(true);
-          
 
-          /*  That is all you need to set up a bar chart.  For more information
-           *  on creating additional chart types, please see our documentation:
-           *  https://omnisci.github.io/mapd-charting/docs/
-           *  Below we will create one more sample chart type - a pie chart
-           */
-          
-          /*
-           *  To create a new pie chart, we'll follow the same steps as the chart above by:
-           *  - Specifying the dimension and group for our chart
-           *  - Specifying any required or optional attributes to render the chart
-           */
+
+            /*  That is all you need to set up a bar chart.  For more information
+             *  on creating additional chart types, please see our documentation:
+             *  https://omnisci.github.io/mapd-charting/docs/
+             *  Below we will create one more sample chart type - a pie chart
+             */
+
+            /*
+             *  To create a new pie chart, we'll follow the same steps as the chart above by:
+             *  - Specifying the dimension and group for our chart
+             *  - Specifying any required or optional attributes to render the chart
+             */
             var pieChartDimension = crossFilter.dimension("health");
             var pieChartGroup = pieChartDimension.group().reduceCount();
 
@@ -143,17 +131,17 @@
                 .ordinalColors(colorScheme)
                 .legend(dc.legend());
 
-          
-          
-          /*  Calling dc.renderAllAsync() will render all of the charts we set up.  Any
-           *  filters applied by the user (via clicking the bar chart, or pie chart) will
-           *  automagically call redraw on the charts without any intervention from us
-           */
-          
+
+
+            /*  Calling dc.renderAllAsync() will render all of the charts we set up.  Any
+             *  filters applied by the user (via clicking the bar chart, or pie chart) will
+             *  automagically call redraw on the charts without any intervention from us
+             */
+
             dc.renderAllAsync();
 
         }
-      
+
         /*  Set up a mapd connection where we will specify our:
          *  username, password, host, port, and database name. 
          *  We have configured this sample to mimic your own
@@ -166,19 +154,19 @@
                 .host("use2-api.mapd.cloud")
                 .port("443")
                 .dbName("mapd")
-                .user("G968BB84692B84AFA978")
-                .password("5Mo44r2kfhsai1lcH21qkOc92l8MjHlqly3ZztYt")
+                .user("enter-your-api-key-name-here")
+                .password("enter-your-api-key-secret-here")
                 .connect(function (error, con) {
-              
-                /*
-                 *  This instantiates a new crossfilter.
-                 *  Pass in mapdcon as the first argument to crossfilter, then the
-                 *  table name, then a label for the data (unused in this example).
-                 *
-                 *  to see all availables --  con.getTables()
-                 */
-              
-                /* The line below specifies which table we'd like to use from our cloud instance */
+
+                    /*
+                     *  This instantiates a new crossfilter.
+                     *  Pass in mapdcon as the first argument to crossfilter, then the
+                     *  table name, then a label for the data (unused in this example).
+                     *
+                     *  to see all availables --  con.getTables()
+                     */
+
+                    /* The line below specifies which table we'd like to use from our cloud instance */
                     crossfilter.crossfilter(con, "nyc_trees_2015_683k").then(createCharts)
                 });
         }
