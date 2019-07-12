@@ -1,7 +1,10 @@
 .title {
     font-weight: bold;
+    font-size: 18px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    text-decoration: underline;
   }
   
   .mapd {

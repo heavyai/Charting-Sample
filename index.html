@@ -151,11 +151,11 @@
         function init() {
             new MapdCon()
                 .protocol("https")
-                .host("use2-api.mapd.cloud")
+                .host("use2-api.mapd.cloud")  // Connect to OmniSci Cloud Host
                 .port("443")
-                .dbName("mapd")
-                .user("enter-your-api-key-name-here")
-                .password("enter-your-api-key-secret-here")
+                .dbName("mapd")               // Default database
+                .user("API Key Name from cloud instance SETTINGS")
+                .password("API Key Secret from cloud instance SETTINGS")
                 .connect(function (error, con) {
 
                     /*
