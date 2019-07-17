@@ -10,4 +10,4 @@ To get started, you'll need access to an OmniSci database.  You can sign up for 
 
 Next, enter your API information in the MapD Connector section in the `index.html` file.  If you're using your OmniSci Cloud instance, this information is available by logging into OmniSci Cloud, clicking the "Settings" button, and then the "Developer" tab. 
 
-Open the page in a browser and you should see a pie chart and bar chart containing information on NYC trees.  Feel free to play around and change the chart types or even use a different table!
+Open `index.html` in a browser and you will see a pie chart and bar chart containing information on NYC trees.  Feel free to play around and change the chart types or even use a different table!
