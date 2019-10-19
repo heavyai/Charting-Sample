@@ -154,21 +154,21 @@
                 .host("use2-api.mapd.cloud")  // Connect to OmniSci Cloud Host
                 .port("443")
                 .dbName("mapd")               // Default database
-                .user("API Key Name from cloud instance SETTINGS")
-                .password("API Key Secret from cloud instance SETTINGS")
-                .connect(function (error, con) {
+            .user("R81305AFD451E497E820")
+            .password("YB81a6yhSbm4GWcaRokjlAfiN9z1LzmMu29P3u6S")
+            .connect(function (error, con) {
 
-                    /*
-                     *  This instantiates a new crossfilter.
-                     *  Pass in mapdcon as the first argument to crossfilter, then the
-                     *  table name, then a label for the data (unused in this example).
-                     *
-                     *  to see all availables --  con.getTables()
-                     */
+                /*
+                    *  This instantiates a new crossfilter.
+                    *  Pass in mapdcon as the first argument to crossfilter, then the
+                    *  table name, then a label for the data (unused in this example).
+                    *
+                    *  to see all availables --  con.getTables()
+                    */
 
-                    /* The line below specifies which table we'd like to use from our cloud instance */
-                    crossfilter.crossfilter(con, "nyc_trees_2015_683k").then(createCharts)
-                });
+                /* The line below specifies which table we'd like to use from our cloud instance */
+                crossfilter.crossfilter(con, "nyc_trees_2015_683k").then(createCharts)
+            });
         }
 
         document.addEventListener('DOMContentLoaded', init, false);
